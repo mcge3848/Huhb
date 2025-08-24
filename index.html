@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نتائج طلاب تقنيات الحاسوب - محافظة الرقة</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Tajawal', sans-serif;
+        }
+        
+        body {
+            background-color: #0a192f;
+            color: #e6f1ff;
+            line-height: 1.6;
+            padding: 0;
+            margin: 0;
+            background-image: 
+                linear-gradient(rgba(10, 25, 47, 0.9), rgba(10, 25, 47, 0.9)),
+                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%23123769' fill-opacity='0.4'%3E%3Cpath opacity='.5' d='M96 95h4v1h-4v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9zm-1 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9z'/%3E%3Cpath d='M6 5V0H5v5H0v1h5v94h1V6h94V5H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 30px auto;
+            background: linear-gradient(135deg, rgba(13, 25, 42, 0.95), rgba(21, 38, 63, 0.95));
+            box-shadow: 0 0 40px rgba(0, 217, 255, 0.15);
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(102, 153, 204, 0.2);
+        }
+        
+        .watermark {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-45deg);
+            font-size: 80px;
+            color: rgba(100, 255, 218, 0.03);
+            font-weight: bold;
+            pointer-events: none;
+            z-index: 0;
+            white-space: nowrap;
+            text-shadow: 0 0 15px rgba(100, 255, 218, 0.2);
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #0a192f, #112240);
+            color: #ccd6f6;
+            padding: 25px;
+            text-align: center;
+            border-bottom: 4px solid #64ffda;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #64ffda, transparent);
+            animation: glow 3s infinite;
+        }
+        
+        .header h1 {
+            font-size: 28px;
+            margin-bottom: 8px;
+            color: #64ffda;
+            text-shadow: 0 0 10px rgba(100, 255, 218, 0.3);
+        }
+        
+        .header h2 {
+            font-size: 20px;
+            font-weight: 500;
+            color: #ccd6f6;
+        }
+        
+        .tech-icon {
+            font-size: 24px;
+            margin: 0 10px;
+            color: #64ffda;
+        }
+        
+        .student-info {
+            padding: 25px;
+            background: rgba(17, 34, 64, 0.5);
+            border-bottom: 1px solid rgba(100, 255, 218, 0.2);
+            position: relative;
+        }
+        
+        .student-info::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 5%;
+            left: 5%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(100, 255, 218, 0.5), transparent);
+        }
+        
+        .info-row {
+            display: flex;
+            margin-bottom: 15px;
+            align-items: center;
+        }
+        
+        .info-label {
+            width: 170px;
+            font-weight: bold;
+            color: #64ffda;
+            display: flex;
+            align-items: center;
+        }
+        
+        .info-label i {
+            margin-left: 10px;
+            font-size: 18px;
+        }
+        
+        .info-value {
+            flex: 1;
+            color: #ccd6f6;
+            font-weight: 500;
+        }
+        
+        .results-section {
+            padding: 25px;
+        }
+        
+        .results-section h3 {
+            text-align: center;
+            margin-bottom: 25px;
+            color: #64ffda;
+            padding-bottom: 15px;
+            border-bottom: 2px solid rgba(100, 255, 218, 0.3);
+            position: relative;
+            font-size: 22px;
+        }
+        
+        .results-section h3::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            right: 40%;
+            left: 40%;
+            height: 2px;
+            background: #64ffda;
+            box-shadow: 0 0 10px rgba(100, 255, 218, 0.5);
+        }
+        
+        .results-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 25px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .results-table th {
+            background: linear-gradient(135deg, #0a192f, #112240);
+            padding: 16px;
+            text-align: right;
+            border: 1px solid rgba(100, 255, 218, 0.2);
+            color: #64ffda;
+            font-weight: 600;
+        }
+        
+        .results-table td {
+            padding: 16px;
+            border: 1px solid rgba(100, 255, 218, 0.1);
+            text-align: center;
+            color: #ccd6f6;
+            transition: background 0.3s;
+        }
+        
+        .results-table tr:nth-child(even) {
+            background: rgba(17, 34, 64, 0.3);
+        }
+        
+        .results-table tr:hover td {
+            background: rgba(100, 255, 218, 0.1);
+        }
+        
+        .total-row {
+            background: linear-gradient(135deg, rgba(10, 25, 47, 0.8), rgba(17, 34, 64, 0.8)) !important;
+            font-weight: bold;
+        }
+        
+        .total-row td {
+            color: #64ffda;
+            font-size: 18px;
+        }
+        
+        .summary {
+            background: rgba(17, 34, 64, 0.5);
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 25px;
+            border-right: 4px solid #64ffda;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .summary h4 {
+            margin-bottom: 15px;
+            color: #64ffda;
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .summary h4 i {
+            margin-left: 10px;
+        }
+        
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(100, 255, 218, 0.1);
+        }
+        
+        .summary-row:last-child {
+            border-bottom: none;
+        }
+        
+        .summary-label {
+            font-weight: bold;
+            color: #ccd6f6;
+            display: flex;
+            align-items: center;
+        }
+        
+        .summary-label i {
+            margin-left: 8px;
+            color: #64ffda;
+        }
+        
+        .summary span {
+            color: #64ffda;
+            font-weight: 600;
+        }
+        
+        .message {
+            text-align: center;
+            padding: 20px;
+            margin-top: 25px;
+            background: rgba(17, 34, 64, 0.6);
+            border-radius: 8px;
+            border-right: 4px solid #64ffda;
+            font-weight: bold;
+            color: #ccd6f6;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .message::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #64ffda, transparent);
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 25px;
+            background: linear-gradient(135deg, #0a192f, #112240);
+            color: #8892b0;
+            font-size: 15px;
+            border-top: 1px solid rgba(100, 255, 218, 0.2);
+        }
+        
+        .footer p:first-child {
+            margin-bottom: 10px;
+            color: #ccd6f6;
+        }
+        
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+            background: rgba(17, 34, 64, 0.7);
+            border-bottom: 1px solid rgba(100, 255, 218, 0.2);
+            flex-wrap: wrap;
+            backdrop-filter: blur(5px);
+        }
+        
+        .control-btn {
+            padding: 12px 25px;
+            background: linear-gradient(135deg, #0a192f, #112240);
+            color: #ccd6f6;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            font-weight: 500;
+            border: 1px solid rgba(100, 255, 218, 0.2);
+        }
+        
+        .control-btn:hover {
+            background: linear-gradient(135deg, #112240, #0a192f);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            color: #64ffda;
+        }
+        
+        .search-container {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            margin: 0 15px;
+            background: rgba(17, 34, 64, 0.7);
+            padding: 8px 20px;
+            border-radius: 30px;
+            border: 1px solid rgba(100, 255, 218, 0.2);
+        }
+        
+        #searchInput {
+            padding: 10px 20px;
+            background: transparent;
+            border: 1px solid rgba(100, 255, 218, 0.3);
+            border-radius: 30px;
+            width: 220px;
+            direction: ltr;
+            text-align: right;
+            color: #ccd6f6;
+            transition: all 0.3s;
+        }
+        
+        #searchInput:focus {
+            outline: none;
+            border-color: #64ffda;
+            box-shadow: 0 0 10px rgba(100, 255, 218, 0.3);
+        }
+        
+        #searchInput::placeholder {
+            color: #8892b0;
+        }
+        
+        .student-list {
+            position: absolute;
+            background: rgba(23, 42, 69, 0.95);
+            border: 1px solid rgba(100, 255, 218, 0.2);
+            border-radius: 8px;
+            max-height: 250px;
+            overflow-y: auto;
+            width: 250px;
+            z-index: 100;
+            display: none;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            margin-top: 5px;
+        }
+        
+        .student-item {
+            padding: 12px 20px;
+            cursor: pointer;
+            border-bottom: 1px solid rgba(100, 255, 218, 0.1);
+            color: #ccd6f6;
+            transition: background 0.3s;
+        }
+        
+        .student-item:hover {
+            background: rgba(100, 255, 218, 0.1);
+            color: #64ffda;
+        }
+        
+        .student-item:last-child {
+            border-bottom: none;
+        }
+        
+        @keyframes glow {
+            0% { opacity: 0; }
+            50% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+        
+        @media print {
+            .controls {
+                display: none;
+            }
+            
+            body {
+                background: none;
+            }
+            
+            .container {
+                box-shadow: none;
+                margin: 0;
+                background: white;
+            }
+            
+            .header {
+                background: #0a192f !important;
+                -webkit-print-color-adjust: exact;
+                color-adjust: exact;
+            }
+            
+            .student-info, .results-section, .summary, .message, .footer {
+                background: white !important;
+                -webkit-print-color-adjust: exact;
+                color-adjust: exact;
+            }
+            
+            .results-table th {
+                background: #f0f4f7 !important;
+                -webkit-print-color-adjust: exact;
+                color-adjust: exact;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .info-row {
+                flex-direction: column;
+                margin-bottom: 15px;
+                align-items: flex-start;
+            }
+            
+            .info-label {
+                width: 100%;
+                margin-bottom: 5px;
+            }
+            
+            .results-table {
+                font-size: 14px;
+            }
+            
+            .header h1 {
+                font-size: 22px;
+            }
+            
+            .header h2 {
+                font-size: 16px;
+            }
+            
+            .controls {
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+            }
+            
+            .search-container {
+                width: 100%;
+                justify-content: center;
+                margin-bottom: 10px;
+            }
+            
+            #searchInput {
+                width: 100%;
+                max-width: 250px;
+            }
+            
+            .container {
+                margin: 15px;
+                width: auto;
+            }
+        }
+        
+        /* شريط التمرير المخصص */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: rgba(17, 34, 64, 0.5);
+            border-radius: 10px;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: #64ffda;
+            border-radius: 10px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: #4fc9b4;
+        }
+    </style>
+</head>
+<body>
+    <div class="controls">
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="ابحث برقم الاكتتاب">
+            <button class="control-btn" onclick="searchStudent()"><i class="fas fa-search"></i> بحث</button>
+            <div class="student-list" id="studentList"></div>
+        </div>
+        <button class="control-btn" onclick="window.print()"><i class="fas fa-print"></i> طباعة</button>
+        <button class="control-btn" onclick="location.reload()"><i class="fas fa-sync"></i> تحديث</button>
+    </div>
+
+    <div class="container">
+        <div class="watermark">تقنيات الحاسوب</div>
+        
+        <div class="header">
+            <h1>
+                <span class="tech-icon"><i class="fas fa-laptop-code"></i></span>
+                نتائج طلاب تقنيات الحاسوب - محافظة الرقة
+                <span class="tech-icon"><i class="fas fa-microchip"></i></span>
+            </h1>
+            <h2>النتائج النهائية للفصل الدراسي الثاني 2024/2025</h2>
+        </div>
+        
+        <div class="student-info">
+            <div class="info-row">
+                <div class="info-label"><i class="fas fa-user-graduate"></i> الاسم الثلاثي:</div>
+                <div class="info-value" id="studentName">ثاني احمد العلي</div>
+            </div>
+            <div class="info-row">
+                <div class="info-label"><i class="fas fa-id-card"></i> رقم الاكتتاب:</div>
+                <div class="info-value" id="studentId">1506158</div>
+            </div>
+            <div class="info-row">
+                <div class="info-label"><i class="fas fa-certificate"></i> الشهادة:</div>
+                <div class="info-value">ثانوي-تقنيات حاسوب-منهاج دمشق حديث</div>
+                </div>
+            <div class="info-row">
+                <div class="info-label"><i class="fas fa-university"></i> المركز:</div>
+                <div class="info-value">معدان التضامن </div>
+            </div>
+            <div class="info-row">
+                <div class="info-label"><i class="fas fa-door-open"></i> القاعة:</div>
+                <div class="info-value">C105 - رقم الجلوس 12</div>
+            </div>
+        </div>
+        
+        <div class="results-section">
+            <h3><i class="fas fa-chart-line"></i> النتائج التفصيلية</h3>
+            
+            <table class="results-table">
+                <thead>
+                    <tr>
+                        <th>المادة</th>
+                        <th>الدرجة</th>
+                        <th>الدرجة العظمى</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>برمجة</td>
+                        <td id="programmingMark">650</td>
+                        <td>700</td>
+                    </tr>
+                    <tr>
+                        <td>الصيانة المادية والبرمجية</td>
+                        <td id="maintenanceMark">620</td>
+                        <td>700</td>
+                    </tr>
+                    <tr>
+                        <td>إدارة الشبكات</td>
+                        <td id="networksMark">540</td>
+                        <td>600</td>
+                    </tr>
+                    <tr>
+                        <td>تصميم موقع ويب</td>
+                        <td id="webDesignMark">580</td>
+                        <td>600</td>
+                    </tr>
+                    <tr>
+                        <td>اللغة العربية</td>
+                        <td id="arabicMark">360</td>
+                        <td>400</td>
+                    </tr>
+                    <tr>
+                        <td>رياضيات</td>
+                        <td id="mathMark">340</td>
+                        <td>400</td>
+                    </tr>
+                    <tr>
+                        <td>فيزياء وكيمياء</td>
+                        <td id="physicsChemistryMark">320</td>
+                        <td>400</td>
+                    </tr>
+                    <tr>
+                        <td>اللغة الإنجليزية</td>
+                        <td id="englishMark">270</td>
+                        <td>300</td>
+                    </tr>
+                    <tr>
+                        <td>التربية الإسلامية</td>
+                        <td id="islamicMark">190</td>
+                        <td>200</td>
+                    </tr>
+                    <tr class="total-row">
+                        <td>المجموع الكلي</td>
+                        <td id="totalMark">3870</td>
+                        <td>4300</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="summary">
+                <h4><i class="fas fa-chart-pie"></i> ملخص النتائج</h4>
+                <div class="summary-row">
+                    <span class="summary-label"><i class="fas fa-percentage"></i> النسبة المئوية:</span>
+                    <span id="percentage">90.0%</span>
+                </div>
+                <div class="summary-row">
+                    <span class="summary-label"><i class="fas fa-medal"></i> التقدير:</span>
+                    <span id="grade">امتياز</span>
+                </div>
+                <div class="summary-row">
+                    <span class="summary-label"><i class="fas fa-trophy"></i> الترتيب بين الطلاب:</span>
+                    <span id="rank">4 من 40</span>
+                </div>
+            </div>
+            
+            <div class="message" id="message">
+                <i class="fas fa-star"></i> مبروك! لقد حققت نتيجة ممتازة. استمر في التفوق. <i class="fas fa-star"></i>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>وزارة التربية والتعليم- مديرية تربية الرقة</p>
+            <p>جميع الحقوق محفوظة © 2025 - نتائج الدورة الامتحانية لطلاب تقنيات الحاسوب</p>
+        </div>
+    </div>
+
+    <script>
+        // بيانات الطلاب
+        const students = [
+            {
+                id: 1506158,
+                name: "ثاني احمد العلي",
+                marks: {
+                    programming: 650,
+                    maintenance: 620,
+                    networks: 540,
+                    webDesign: 580,
+                    arabic: 360,
+                    math: 340,
+                    physicsChemistry: 320,
+                    english: 270,
+                    islamic: 190
+                },
+                total: 3870,
+                percentage: 90.0,
+                grade: "امتياز",
+                rank: "4 من 40",
+                message: "مبروك! لقد حققت نتيجة ممتازة. استمر في التفوق."
+            },
+            {
+                id: 1506476,
+                name: "عبد الكريم الشيخ",
+                marks: {
+                    programming: 680,
+                    maintenance: 630,
+                    networks: 550,
+                    webDesign: 560,
+                    arabic: 350,
+                    math: 330,
+                    physicsChemistry: 310,
+                    english: 260,
+                    islamic: 180
+                },
+                total: 3750,
+                percentage: 87.2,
+                grade: "جيد جداً",
+                rank: "7 من 40",
+                message: "أحسنت! أداء جيد جداً، يمكنك التحسين أكثر."
+            },
+            {
+                id: 1524113,
+                name: "أيمن فياض الطراد",
+                marks: {
+                    programming: 690,
+                    maintenance: 640,
+                    networks: 560,
+                    webDesign: 590,
+                    arabic: 370,
+                    math: 350,
+                    physicsChemistry: 330,
+                    english: 280,
+                    islamic: 195
+                },
+                total: 4005,
+                percentage: 93.1,
+                grade: "امتياز",
+                rank: "2 من 40",
+                message: "ممتاز! كنت接近完美، استمر في هذا التميز."
+            }
+        ];
+
+        // عناصر DOM
+        const searchInput = document.getElementById('searchInput');
+        const studentList = document.getElementById('studentList');
+        
+        // إضافة event listeners
+        searchInput.addEventListener('input', handleSearchInput);
+        searchInput.addEventListener('focus', handleSearchInput);
+        
+        // وظيفة معالجة إدخال البحث
+        function handleSearchInput() {
+            const searchText = searchInput.value.trim();
+            
+            if (searchText.length === 0) {
+                studentList.style.display = 'none';
+                return;
+            }
+            
+            // تصفية الطلاب بناء على رقم الاكتتاب
+            const filteredStudents = students.filter(student => 
+                student.id.toString().includes(searchText)
+            );
+            
+            displayStudentList(filteredStudents);
+        }
+        
+        // عرض قائمة الطلاب
+        function displayStudentList(studentsList) {
+            if (studentsList.length === 0) {
+                studentList.style.display = 'none';
+                return;
+            }
+            
+            studentList.innerHTML = '';
+            
+            studentsList.forEach(student => {
+                const item = document.createElement('div');
+                item.className = 'student-item';
+                item.textContent = `${student.id} - ${student.name}`;
+                item.addEventListener('click', () => {
+                    updateStudentData(student);
+                    studentList.style.display = 'none';
+                    searchInput.value = '';
+                });
+                
+                studentList.appendChild(item);
+            });
+            
+            studentList.style.display = 'block';
+        }
+        
+        // البحث عن الطالب
+        function searchStudent() {
+            const searchText = searchInput.value.trim();
+            
+            if (searchText.length === 0) {
+                alert('يرجى إدخال رقم الاكتتاب للبحث');
+                return;
+            }
+            
+            const student = students.find(s => s.id.toString() === searchText);
+            
+            if (student) {
+                updateStudentData(student);
+            } else {
+                alert('لم يتم العثور على طالب بهذا الرقم');
+            }
+        }
+        
+        // تحديث بيانات الطالب المعروضة
+        function updateStudentData(student) {
+            // تحديث المعلومات الأساسية
+            document.getElementById('studentName').textContent = student.name;
+            document.getElementById('studentId').textContent = student.id;
+            
+            // تحديث الدرجات
+            document.getElementById('programmingMark').textContent = student.marks.programming;
+            document.getElementById('maintenanceMark').textContent = student.marks.maintenance;
+            document.getElementById('networksMark').textContent = student.marks.networks;
+            document.getElementById('webDesignMark').textContent = student.marks.webDesign;
+            document.getElementById('arabicMark').textContent = student.marks.arabic;
+            document.getElementById('mathMark').textContent = student.marks.math;
+            document.getElementById('physicsChemistryMark').textContent = student.marks.physicsChemistry;
+            document.getElementById('englishMark').textContent = student.marks.english;
+            document.getElementById('islamicMark').textContent = student.marks.islamic;
+            
+            // تحديث المجموع والنسبة والتقدير والترتيب
+            document.getElementById('totalMark').textContent = student.total;
+            document.getElementById('percentage').textContent = student.percentage.toFixed(1) + '%';
+            document.getElementById('grade').textContent = student.grade;
+            document.getElementById('rank').textContent = student.rank;
+            document.getElementById('message').textContent = student.message;
+        }
+        
+        // إخفاء قائمة الطلاب عند النقر خارجها
+        document.addEventListener('click', (e) => {
+            if (!searchInput.contains(e.target) && !studentList.contains(e.target)) {
+                studentList.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
